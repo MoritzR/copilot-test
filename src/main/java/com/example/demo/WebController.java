@@ -52,6 +52,14 @@ public class WebController {
         }
         
         try {
+            String githubUsername = principal.getAttribute("login");
+            CustomerDTO customerDTO = customerForm.toCustomerDTO();
+            
+            customerService.findCustomerByGithubUsername(githubUsername)
+                    .ifPresentOrElse(
+                            existing -> {
+                                customerService.updateCustomerForGithubUser(githubUsername, customerDTO);
+                                model.addAttribute("message", "Customer updated successfully!");
                             },
                             () -> {
                                 customerService.findOrCreateCustomerForGithubUser(githubUsername, customerDTO);
