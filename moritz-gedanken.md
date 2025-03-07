@@ -16,3 +16,7 @@ Haben alles im Agent mode gemacht. Hat recht gut funktioniert, man musste nicht 
 - wahrscheinlich sollte man mehr technik vorgeben (wie DTO Klassen schreiben, welche test libraries, etc.)
 
 - gute prompts sind wichtig
+    - mit fertigen prompts kann das bestimmt an jeden beliebigen abgeben
+- bei wenig Erfahrung schwer einzuschätzen, ob das gut ist, was Copilot einem vorgibt
+
+- Code review, manuelles testing haben wir selber nicht gemacht
