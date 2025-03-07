@@ -20,3 +20,5 @@ Haben alles im Agent mode gemacht. Hat recht gut funktioniert, man musste nicht 
 - bei wenig Erfahrung schwer einzuschätzen, ob das gut ist, was Copilot einem vorgibt
 
 - Code review, manuelles testing haben wir selber nicht gemacht
+
+=> mehr Prompt schreiben üben, allgemein mehr benutzen
