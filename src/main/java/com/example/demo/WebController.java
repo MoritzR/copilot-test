@@ -37,7 +37,7 @@ public class WebController {
         return "index";
     }
     
-    @PostMapping("/")
+    @PostMapping("/customer")
     public String createCustomer(
             @AuthenticationPrincipal OAuth2User principal,
             @Valid @ModelAttribute("customerForm") CustomerRequestDTO customerForm,
@@ -71,6 +71,6 @@ public class WebController {
         } catch (Exception e) {
             model.addAttribute("error", "Failed to save customer: " + e.getMessage());
         }
-        return "index";
+        return "redirect:/";
     }
 }
