@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.flywaydb:flyway-core'
+	implementation 'javax.persistence:javax.persistence-api:2.2'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -38,4 +39,10 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
