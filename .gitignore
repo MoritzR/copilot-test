@@ -37,3 +37,11 @@ out/
 .vscode/
 data/customerdb.mv.db
 data/customerdb.trace.db
+
+### Environment Files ###
+.env
+
+### H2 Database ###
+/data/
+*.mv.db
+*.trace.db

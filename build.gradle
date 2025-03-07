@@ -38,6 +38,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	
 	// OpenTelemetry dependencies
 	implementation 'io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter'
@@ -47,6 +49,7 @@ dependencies {
 	
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'javax.persistence:javax.persistence-api:2.2'
+	implementation 'me.paulschwarz:spring-dotenv:4.0.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
