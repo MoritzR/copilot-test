@@ -24,6 +24,9 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "github_username", unique = true)
+    private String githubUsername;
+
     // Getters and setters
     public UUID getId() {
         return id;
@@ -55,5 +58,13 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGithubUsername() {
+        return githubUsername;
+    }
+
+    public void setGithubUsername(String githubUsername) {
+        this.githubUsername = githubUsername;
     }
 }

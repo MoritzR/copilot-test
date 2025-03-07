@@ -36,4 +36,10 @@ out/
 ### VS Code ###
 .vscode/
 
+### Environment Files ###
 .env
+
+### H2 Database ###
+/data/
+*.mv.db
+*.trace.db

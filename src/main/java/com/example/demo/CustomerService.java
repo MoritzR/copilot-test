@@ -143,6 +143,58 @@ public class CustomerService {
     }
     
     /**
+     * Find or create a customer for a GitHub user
+     * @param githubUsername GitHub username
+     * @param customerDTO initial customer data (if creating)
+     * @return CustomerDTO for the existing or new customer
+     */
+    public CustomerDTO findOrCreateCustomerForGithubUser(String githubUsername, CustomerDTO customerDTO) {
+        Optional<Customer> existingCustomer = customerRepository.findByGithubUsername(githubUsername);
+        
+        if (existingCustomer.isPresent()) {
+            return convertToDTO(existingCustomer.get());
+        }
+        
+        Customer newCustomer = new Customer();
+        newCustomer.setFirstName(customerDTO.getFirstName());
+        newCustomer.setLastName(customerDTO.getLastName());
+        newCustomer.setEmail(customerDTO.getEmail());
+        newCustomer.setGithubUsername(githubUsername);
+        
+        newCustomer = customerRepository.save(newCustomer);
+        return convertToDTO(newCustomer);
+    }
+
+    /**
+     * Get customer by GitHub username
+     * @param githubUsername GitHub username
+     * @return Optional containing CustomerDTO if found
+     */
+    public Optional<CustomerDTO> findCustomerByGithubUsername(String githubUsername) {
+        return customerRepository.findByGithubUsername(githubUsername)
+                .map(this::convertToDTO);
+    }
+
+    /**
+     * Update customer for GitHub user
+     * @param githubUsername GitHub username
+     * @param customerDTO updated customer details
+     * @return updated CustomerDTO
+     * @throws CustomerNotFoundException if customer doesn't exist
+     */
+    public CustomerDTO updateCustomerForGithubUser(String githubUsername, CustomerDTO customerDTO) {
+        Customer customer = customerRepository.findByGithubUsername(githubUsername)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found for GitHub user: " + githubUsername));
+        
+        customer.setFirstName(customerDTO.getFirstName());
+        customer.setLastName(customerDTO.getLastName());
+        customer.setEmail(customerDTO.getEmail());
+        
+        customer = customerRepository.save(customer);
+        return convertToDTO(customer);
+    }
+
+    /**
      * Helper method to convert Customer entity to CustomerDTO
      */
     private CustomerDTO convertToDTO(Customer customer) {
