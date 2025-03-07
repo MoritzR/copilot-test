@@ -25,8 +25,8 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.DELETE, "/api/customers/**").hasRole("ADMIN")
                     .requestMatchers("/api/customers/**").authenticated()
                     .requestMatchers("/secured-ping").authenticated()
-                    .requestMatchers("/login", "/oauth2/authorization/**").permitAll()
-                    .anyRequest().permitAll()
+                    .requestMatchers("/login", "/oauth2/authorization/**", "/login/oauth2/code/**").permitAll()
+                    .anyRequest().authenticated()
             )
             .oauth2Login(oauth2 -> oauth2
                 .defaultSuccessUrl("/", true)
