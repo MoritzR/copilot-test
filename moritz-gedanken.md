@@ -22,3 +22,8 @@ Haben alles im Agent mode gemacht. Hat recht gut funktioniert, man musste nicht 
 - Code review, manuelles testing haben wir selber nicht gemacht
 
 => mehr Prompt schreiben üben, allgemein mehr benutzen
+
+
+## Teil 2
+- nimmt Fehler als Ursachen an, die nicht stimmen
+    - bitte, die Fehler mit mir vor den Edits durchzuchecken
