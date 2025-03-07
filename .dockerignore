@@ -1,0 +1,23 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+build/
+
+# Exclude unnecessary files
+.git/
+.github/
+.gitignore
+README.md
+HELP.md
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Don't include local development and test files
+src/test/
+.env
+*.log
+logs/
+
+# Keep only what's needed for the build
+!gradle/wrapper/gradle-wrapper.jar
