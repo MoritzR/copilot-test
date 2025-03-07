@@ -39,6 +39,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testImplementation 'org.testcontainers:testcontainers'
 	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'com.microsoft.playwright:playwright:1.42.0'
 }
 
 tasks.named('test') {
@@ -70,4 +71,12 @@ dependencyCheck {
 	failBuildOnCVSS = 7
 	formats = ['HTML', 'JSON']
 	suppressionFile = 'dependency-check-suppressions.xml'
+}
+
+// Playwright browser installation
+task installPlaywright(type: JavaExec) {
+	classpath = sourceSets.test.runtimeClasspath
+	mainClass = 'com.microsoft.playwright.CLI'
+	args = ['install']
+	dependsOn testClasses
 }
