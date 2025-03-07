@@ -1,0 +1,295 @@
+Below is a detailed, multi-level breakdown of the project steps, followed by a series of incremental prompt examples for driving a code-generation LLM. Each prompt is separated and contained in fenced code blocks as requested.
+
+---
+
+## Detailed Step-by-Step Blueprint
+
+### 1. High-Level Breakdown
+
+1.1 Project Initialization  
+• Set up a new Spring Boot project (using Spring Initializr or manual configuration)  
+• Configure Maven, Java version (JDK 21), and basic structure  
+
+1.2 Security & OAuth Basics  
+• Integrate Spring Security and configure GitHub OAuth  
+• Test basic authentication flow  
+
+1.3 Database & Entity Setup  
+• Add PostgreSQL dependency, configure TestContainers for testing  
+• Create the Customer entity (UUID primary key, fields as defined)  
+• Set up Flyway for database migrations  
+
+1.4 Repository & Service Layers  
+• Implement a JpaRepository for Customer  
+• Implement business logic in a CustomerService class  
+
+1.5 Controller & DTOs  
+• Create REST endpoints (CRUD + search) in a CustomerController  
+• Use DTOs (Data Transfer Objects) for request/response handling  
+
+1.6 Validation, Error Handling & Logging  
+• Integrate validation annotations (e.g., javax.validation)  
+• Add global exception handlers for standardized errors  
+• Implement basic audit logging for create/update methods  
+
+1.7 Testing & Integration  
+• Write unit tests for service and validation logic  
+• Write MockMvc tests for controllers  
+• Verify OAuth security flows  
+
+1.8 Containerization & CI  
+• Create Dockerfile and Docker Compose for local dev  
+• Configure GitHub Actions with build, test, and dependency checks  
+
+---
+
+### 2. Iterative Chunks
+
+Each major step is broken into smaller, incremental chunks to allow for test-driven progress and minimal risk:
+
+#### Chunk A: Project Bootstrapping  
+A1. Create a new Spring Boot project (pom.xml, minimal dependencies)  
+A2. Configure application.properties with placeholders  
+A3. Write a basic health check endpoint to confirm the project runs  
+
+#### Chunk B: Security & OAuth  
+B1. Add Spring Security dependencies  
+B2. Configure GitHub OAuth 2.0 (client ID, client secret placeholders)  
+B3. Write placeholder security beans and test with a simple protected endpoint  
+
+#### Chunk C: Database & Migration Setup  
+C1. Add PostgreSQL driver + TestContainers dependencies  
+C2. Configure Flyway and create an initial migration for the "customers" table  
+C3. Validate DB connection with integration tests  
+
+#### Chunk D: Customer Entity & Repository  
+D1. Create the Customer entity (fields + annotations)  
+D2. Create a JpaRepository<Customer, UUID>  
+D3. Write basic unit tests for repository layer using TestContainers  
+
+#### Chunk E: Service & Business Logic  
+E1. Create CustomerService with CRUD methods  
+E2. Implement search/filter logic  
+E3. Write unit tests to validate business rules  
+
+#### Chunk F: Controller & DTOs  
+F1. Create Customer DTOs for request/response  
+F2. Implement CustomerController with CRUD endpoints  
+F3. Write MockMvc tests for the controller  
+
+#### Chunk G: Validation, Error Handling & Logging  
+G1. Add validation annotations (e.g., @NotNull, @Email) to DTOs  
+G2. Implement ControllerAdvice for global exception handling  
+G3. Add and verify basic audit logging  
+
+#### Chunk H: Integration & Security Tests  
+H1. Write integration tests covering the full flow (authentication + CRUD)  
+H2. Validate GitHub OAuth flow with test scenarios  
+H3. Ensure coverage thresholds (JaCoCo)  
+
+#### Chunk I: Containerization & CI Setup  
+I1. Create Dockerfile & Docker Compose  
+I2. Configure GitHub Actions (build, test, security checks)  
+I3. Final verification of local + container-based runs  
+
+---
+
+### 3. Further Breakdown & Right-Sizing
+
+Below is the same breakdown taken one more level deeper to ensure each piece can be incrementally developed and tested:
+
+1. Project Setup  
+   1.1 Create skeleton Spring Boot application with minimal dependencies  
+   1.2 Add .gitignore and basic README.md  
+   1.3 Configure Java version in pom.xml  
+
+2. Security Foundation  
+   2.1 Add Spring Security dependency to pom.xml  
+   2.2 Create SecurityConfig class and an in-memory user for testing  
+   2.3 Add a simple “/secured-ping” endpoint to verify restricted access  
+
+3. GitHub OAuth  
+   3.1 Configure OAuth 2.0 client in application.properties (placeholders for client ID/secret)  
+   3.2 Extend SecurityConfig to handle OAuth flows  
+   3.3 Test with a mock GitHub OAuth provider  
+
+4. PostgreSQL & Flyway  
+   4.1 Add PostgreSQL driver + Flyway to pom.xml  
+   4.2 Create Flyway migration script V1__create_customers.sql  
+   4.3 Validate migration runs on application startup  
+
+5. Customer Entity & Repository  
+   5.1 Create Customer entity (UUID, firstName, lastName, email, etc.)  
+   5.2 Create CustomerRepository (extends JpaRepository)  
+   5.3 Write basic tests for repository using TestContainers  
+
+6. Service Layer  
+   6.1 Implement CustomerService with create, read, update, delete methods  
+   6.2 Add optional search method  
+   6.3 Write unit tests covering all service methods  
+
+7. Controller & DTOs  
+   7.1 Create Customer DTOs for create/update, read, responses  
+   7.2 Implement REST endpoints in CustomerController  
+   7.3 Add MockMvc tests to verify correct HTTP status and JSON responses  
+
+8. Validation, Errors & Logging  
+   8.1 Apply validation annotations to DTO fields  
+   8.2 Create GlobalExceptionHandler with @ControllerAdvice  
+   8.3 Add logging statements for each create/update request  
+
+9. End-to-End Security & Integration Tests  
+   9.1 Write MockMvc tests involving security constraints  
+   9.2 Confirm unauthorized requests are blocked  
+   9.3 Verify OAuth-based authentication flow passes  
+
+10. Containerization & CI  
+   10.1 Create Dockerfile for the Spring Boot app  
+   10.2 Compose file to run the app + Postgres together  
+   10.3 Configure a GitHub Actions workflow (build, test, code coverage, dependency check)  
+
+---
+
+## 4. Series of Prompts for a Code-Generation LLM
+
+Below is an example set of step-by-step prompts. Each prompt is given as text within a fenced code block in Markdown, as requested.
+
+### Prompt 1: Project Initialization
+
+```text
+Prompt 1:
+"Initialize a new Spring Boot project using Maven and Java 21. 
+It should have the following structure:
+
+- A minimal pom.xml with Spring Boot dependencies
+- An Application class (CopilotTestApplication) in package com.example.copilottest
+- A .gitignore to exclude target and other typical files
+- A basic README.md summarizing project setup
+
+Implement these, ensure the project builds successfully, and provide any relevant test or run commands in the README."
+```
+
+---
+
+### Prompt 2: Security (Base Configuration)
+
+```text
+Prompt 2:
+"Add a Spring Security dependency to the pom.xml. 
+Create a SecurityConfig class that sets up a single in-memory user with username=admin, password=admin, role=ADMIN. 
+Add a basic '/secured-ping' endpoint in a PingController to verify security is active. 
+Write a simple test class that checks '/secured-ping' is blocked without credentials and accessible with the correct credentials."
+```
+
+---
+
+### Prompt 3: GitHub OAuth Setup
+
+```text
+Prompt 3:
+"Integrate GitHub OAuth 2.0. 
+1. Update application.properties with placeholders for github.client-id, github.client-secret, and a redirect URI. 
+2. Extend the SecurityConfig to handle OAuth login using GitHub as a provider. 
+3. Provide a minimal test approach to confirm that the application attempts OAuth redirection to GitHub. 
+Use best practices in configuring Spring Security to handle the OAuth flow."
+```
+
+---
+
+### Prompt 4: Database & Flyway
+
+```text
+Prompt 4:
+"Add PostgreSQL and Flyway dependencies to pom.xml. 
+Configure Flyway in application.properties. 
+Create V1__create_customers.sql for the 'customers' table with the columns (id UUID PK, firstName, lastName, etc.). 
+Write a simple integration test to confirm that Flyway applies migrations on startup using TestContainers for PostgreSQL."
+```
+
+---
+
+### Prompt 5: Customer Entity & Repository
+
+```text
+Prompt 5:
+"Create the 'Customer' entity (UUID id, firstName, lastName, email, and any additional fields needed). 
+Mark it with JPA annotations. 
+Write a CustomerRepository interface that extends JpaRepository<Customer, UUID>. 
+Add a unit test using TestContainers to confirm basic repository operations (save, findById, findAll)."
+```
+
+---
+
+### Prompt 6: Customer Service Implementation
+
+```text
+Prompt 6:
+"Create a CustomerService class that provides the following methods:
+- createCustomer(CustomerDTO)
+- updateCustomer(UUID id, CustomerDTO)
+- findCustomerById(UUID id)
+- deleteCustomer(UUID id)
+- searchCustomers(SearchCriteria)
+
+Each method should be unit tested with JUnit and Mockito. 
+Ensure best practices like checking if customer exists before updating or deleting. 
+Include logs at key points for debugging."
+```
+
+---
+
+### Prompt 7: Controller & DTOs
+
+```text
+Prompt 7:
+"Create DTOs for Customer requests and responses. 
+Implement a CustomerController with REST endpoints (get, create, update, delete, search). 
+Use MockMvc tests to verify correct request/response handling, validation errors, and HTTP status codes."
+```
+
+---
+
+### Prompt 8: Validation, Exceptions & Logging
+
+```text
+Prompt 8:
+"Add validation annotations (e.g., NotNull, Email) to the Customer DTO fields. 
+Implement a GlobalExceptionHandler with @ControllerAdvice to handle validation errors and other exceptions. 
+Add logging statements to the controller and service methods for debugging and audit. 
+Test that invalid inputs return appropriate HTTP errors and messages."
+```
+
+---
+
+### Prompt 9: Security & Integration Tests
+
+```text
+Prompt 9:
+"Write integration tests ensuring that:
+1. Unauthenticated users cannot access the Customer APIs.
+2. Only users with ADMIN role can delete customers.
+3. The OAuth flow is triggered properly for protected endpoints.
+
+Use MockMvc with Spring Security test support to verify each scenario."
+```
+
+---
+
+### Prompt 10: Containerization & CI
+
+```text
+Prompt 10:
+"Create a Dockerfile for the Spring Boot application. 
+Add a docker-compose.yaml that runs the app alongside a PostgreSQL container with relevant environment variables. 
+Configure a GitHub Actions workflow that:
+- Builds the project
+- Runs tests with coverage
+- Performs an OWASP dependency check
+Ensure everything works in local Docker builds and passes in CI."
+```
+
+---
+
+**End of Prompts**  
+
+These prompts, taken together, provide a step-by-step guide for a code-generation LLM to incrementally build this Spring Boot customer-management application in a test-driven manner. Each step is structured to introduce new features or configurations with minimal complexity jumps, ensuring consistent testing and stable progress.
