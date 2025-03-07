@@ -17,8 +17,7 @@ services:
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
       - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
       - OTEL_SERVICE_NAME=customer-api
-    volumes:
-      - h2-data:/data
+
     networks:
       - customer-network
     depends_on:
@@ -45,8 +44,6 @@ services:
     networks:
       - customer-network
 
-volumes:
-  h2-data:
 
 networks:
   customer-network:

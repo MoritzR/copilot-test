@@ -44,8 +44,6 @@ dependencies {
 	// OpenTelemetry dependencies
 	implementation 'io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter'
 	implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
-	implementation 'io.opentelemetry.instrumentation:opentelemetry-runtime-telemetry-java17'
-	implementation 'io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0'
 	
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'javax.persistence:javax.persistence-api:2.2'
