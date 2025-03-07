@@ -6,7 +6,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -26,8 +25,7 @@ public class SecurityConfig {
             )
             .oauth2Login(oauth2 -> oauth2
                 .defaultSuccessUrl("/", true)
-            )
-            .httpBasic(withDefaults()); // Enable HTTP Basic for API authentication
+            );
         return http.build();
     }
 }
